@@ -12,15 +12,21 @@ import {
 import { HiOutlineSearch } from 'react-icons/hi';
 
 import logo from '../assets/images/technet-logo.png';
+import { useAppSelector } from '../redux/hook';
 
 export default function Navbar() {
+  const { user } = useAppSelector((state) => state.user);
+ 
+  const handleLogOut =()=>{
+    console.log('logout')
+  }
+
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
       <div className="h-full w-full bg-white/60">
         <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto ">
           <div>
             <img className="h-8" src={logo} alt="log" />
-            
           </div>
           <div>
             <ul className="flex items-center">
@@ -39,17 +45,26 @@ export default function Navbar() {
                   <Link to="/login">Login</Link>
                 </Button>
               </li>
-             
-              <li>
-              <Button variant="link" asChild>
-                  <Link to="/signup">Signup</Link>
-                </Button>
-              </li>
-              <li>
-                <Button variant="ghost">
-                  <HiOutlineSearch size="25" />
-                </Button>
-              </li>
+
+              {!user.email &&(
+                <>
+                <li>
+                  <Button variant="link" asChild>
+                    <Link to="/signup">Signup</Link>
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="ghost">
+                    <HiOutlineSearch size="25" />
+                  </Button>
+                </li>
+              </>
+              )}
+              {user.email &&(
+                <Button onClick={handleLogOut} variant="link" asChild>
+                Logout
+              </Button>
+              )}
               <li className="ml-5">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="outline-none">
