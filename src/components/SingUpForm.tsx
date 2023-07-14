@@ -1,41 +1,30 @@
 'use client';
 
 import * as React from 'react';
-
-
-import { useForm } from 'react-hook-form';
-import { cn } from '../../lib/utils';
+import { cn } from '../lib/utils';
 import { Label } from '@radix-ui/react-dropdown-menu';
-import { Input } from './input';
-import { Button } from './button';
-import { FcGoogle } from 'react-icons/fc';
+import { Input } from './ui/input';
+import { Button } from './ui/button';
 
 
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
-interface SignupFormInputs {
-  email: string;
-  password: string;
-}
-
 export function SignupForm({ className, ...props }: UserAuthFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignupFormInputs>();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
+  async function onSubmit(event: React.SyntheticEvent) {
+    event.preventDefault();
+    setIsLoading(true);
 
-
-  const onSubmit = (data: SignupFormInputs) => {
-    console.log(data);
-   
-  };
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
@@ -48,27 +37,29 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              {...register('email', { required: 'Email is required' })}
+              disabled={isLoading}
             />
-            {errors.email && <p>{errors.email.message}</p>}
             <Input
               id="password"
               placeholder="your password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
-              {...register('password', { required: 'Password is required' })}
+              disabled={isLoading}
             />
-            {errors.password && <p>{errors.password.message}</p>}
             <Input
               id="password"
               placeholder="confirm password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
+              disabled={isLoading}
             />
           </div>
-          <Button>Create Account</Button>
+          <Button disabled={isLoading}>
+            {isLoading && <p>loading</p>}
+            Create Account
+          </Button>
         </div>
       </form>
       <div className="relative">
@@ -81,13 +72,8 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button
-        variant="outline"
-        type="button"
-        className="flex items-center justify-between"
-      >
-        <p>Google</p>
-        <FcGoogle />
+      <Button variant="outline" type="button" disabled={isLoading}>
+        {isLoading ? <p>loading</p> : <p>GitHub</p>}
       </Button>
     </div>
   );
