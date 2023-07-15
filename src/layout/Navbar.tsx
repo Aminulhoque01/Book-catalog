@@ -65,35 +65,14 @@ export default function Navbar() {
               {user.email && (
                 <>
                   <Button variant="link" asChild>
-                    <Link to="/AddNewBook">Add New Book</Link>
+                    <Link to="/AddNewBook">Add New</Link>
                   </Button>
                   <Button onClick={handleLogOut} asChild>
                     <Link to={''}>Logout</Link>
                   </Button>
                 </>
               )}
-              {/* <li className="ml-5">
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="outline-none">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem className="cursor-pointer">
-                      Profile
-                    </DropdownMenuItem>
-                    
-
-                    <DropdownMenuItem className="cursor-pointer">
-                      Subscription
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </li> */}
+              
             </ul>
           </div>
         </div>

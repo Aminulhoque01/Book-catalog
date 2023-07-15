@@ -21,7 +21,7 @@ function App() {
         dispatch(setLoading(false));
       }
     })
-  },[])
+  },[dispatch])
 
 
   return (
