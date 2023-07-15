@@ -12,14 +12,22 @@ import {
 import { HiOutlineSearch } from 'react-icons/hi';
 
 import logo from '../assets/images/technet-logo.png';
-import { useAppSelector } from '../redux/hook';
+import { useAppDispatch, useAppSelector } from '../redux/hook';
+import { signOut } from 'firebase/auth';
+import { auth } from '../lib/firebase';
+import { setUser } from '../redux/features/user/userSlice';
 
 export default function Navbar() {
   const { user } = useAppSelector((state) => state.user);
- 
-  const handleLogOut =()=>{
-    console.log('logout')
-  }
+
+  const dispatch = useAppDispatch();
+  const handleLogOut = () => {
+    signOut(auth)
+    .then(()=>{
+      dispatch(setUser(null))
+    })
+    
+  };
 
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
@@ -40,32 +48,29 @@ export default function Navbar() {
                   <Link to="/allbooks">All Books</Link>
                 </Button>
               </li>
-              <li>
-                <Button variant="link" asChild>
-                  <Link to="/login">Login</Link>
-                </Button>
-              </li>
 
-              {!user.email &&(
+              {!user.email && (
                 <>
-                <li>
-                  <Button variant="link" asChild>
-                    <Link to="/signup">Signup</Link>
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="ghost">
-                    <HiOutlineSearch size="25" />
-                  </Button>
-                </li>
-              </>
+                  <li>
+                    <Button variant="link" asChild>
+                      <Link to="/login">Login</Link>
+                    </Button>
+                  </li>
+
+                  <li>
+                    <Button variant="link" asChild>
+                      <Link to="/signup">Signup</Link>
+                    </Button>
+                  </li>
+                  
+                </>
               )}
-              {user.email &&(
-                <Button onClick={handleLogOut} variant="link" asChild>
-                Logout
-              </Button>
+              {user.email && (
+                <Button onClick={handleLogOut} asChild>
+                  <Link  to={''}>Logout</Link>
+                </Button>
               )}
-              <li className="ml-5">
+              {/* <li className="ml-5">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="outline-none">
                     <Avatar>
@@ -79,18 +84,14 @@ export default function Navbar() {
                     <DropdownMenuItem className="cursor-pointer">
                       Profile
                     </DropdownMenuItem>
-                    <Link to="/login">
-                      <DropdownMenuItem className="cursor-pointer">
-                        Login
-                      </DropdownMenuItem>
-                    </Link>
+                    
 
                     <DropdownMenuItem className="cursor-pointer">
                       Subscription
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

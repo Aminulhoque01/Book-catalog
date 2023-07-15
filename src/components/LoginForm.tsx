@@ -39,11 +39,11 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
 
-  // useEffect(() => {
-  //   if (user.email && !isLoading) {
-  //     navigate('/');
-  //   }
-  // }, [user.email, isLoading]);
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      navigate('/');
+    }
+  }, [user.email, isLoading]);
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
