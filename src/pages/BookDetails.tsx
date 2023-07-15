@@ -18,11 +18,11 @@ export default function BookDetails() {
         </div>
         <div className="w-[50%] space-y-3">
           <h1 className="text-3xl font-semibold">{book?.title}</h1>
-          <p className="text-sm">Rating: {book?.description}</p>
-          <p className="text-xl">Rating: {book?.rating}</p>
-          <p className="text-xl">Rating: {book?.rating}</p>
-          <h3 className="text-1xl font-semibold">{book?.author}</h3>
-          <p className="text-sm">Rating: {book?.publication}</p>
+          <p className="text-sm">Rating: {book?.details}</p>
+          <p className="text-xl">Rating: {book?.reviews}</p>
+          <p className="text-xl">Genre: {book?.Genre}</p>
+          <h3 className="text-1xl font-semibold">Author: {book?.author}</h3>
+          <p className="text-sm">publication-date: {book?.publication }</p>
         </div>
       </div>
       
