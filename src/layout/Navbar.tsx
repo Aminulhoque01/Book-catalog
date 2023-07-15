@@ -22,11 +22,9 @@ export default function Navbar() {
 
   const dispatch = useAppDispatch();
   const handleLogOut = () => {
-    signOut(auth)
-    .then(()=>{
-      dispatch(setUser(null))
-    })
-    
+    signOut(auth).then(() => {
+      dispatch(setUser(null));
+    });
   };
 
   return (
@@ -62,13 +60,17 @@ export default function Navbar() {
                       <Link to="/signup">Signup</Link>
                     </Button>
                   </li>
-                  
                 </>
               )}
               {user.email && (
-                <Button onClick={handleLogOut} asChild>
-                  <Link  to={''}>Logout</Link>
-                </Button>
+                <>
+                  <Button variant="link" asChild>
+                    <Link to="/AddNewBook">Add New Book</Link>
+                  </Button>
+                  <Button onClick={handleLogOut} asChild>
+                    <Link to={''}>Logout</Link>
+                  </Button>
+                </>
               )}
               {/* <li className="ml-5">
                 <DropdownMenu>
