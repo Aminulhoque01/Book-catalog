@@ -8,6 +8,7 @@ import NoteFound from '../pages/NoteFound';
 // import BookDetails from '../pages/BookDetails';
 import AddNewBook from '../pages/AddNewBook';
 import BookDetails from '../pages/BookDetails';
+ 
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -29,6 +30,7 @@ const routes = createBrowserRouter([
         path: '/AddNewBook/',
         element: <AddNewBook></AddNewBook>
       },
+     
     ],
   },
 

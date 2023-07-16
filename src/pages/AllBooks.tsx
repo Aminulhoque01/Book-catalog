@@ -69,7 +69,7 @@ export default function AllBooks() {
         <div className="space-y-3 ">
           <h1 className="text-2xl uppercase">Price Range</h1>
           <div className="max-w-xl"></div>
-          {/* <div>From 0$ To {priceRange}$</div> */}
+          
         </div>
       </div>
       <div className="col-span-9 grid grid-cols-3 gap-10 pb-20">

@@ -1,20 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { usePostBookMutation } from '../redux/books/bookApi';
+import { toast } from '../components/ui/use-toast';
+
+
 
 export default function AddNewBook() {
+  const [inputValue, setInputValue] = useState<string>('');
+  // const {data} = useGetCommentQuery({refetchOnMountOrArgChange:true,pollingInterval:30000});
+  const [postBook, {isLoading,isError,isSuccess}] = usePostBookMutation();
+  console.log(isLoading);
+  console.log(isError);
+  console.log(isSuccess);
 
   const handleAdd = (event:any) => {
     event.preventDefault();
     const form = event.target;
-    const items = form.items.value;
-    const price = form.price.value;
-    const textarea = form.textarea.value;
-    const genre = form.genre.value;
-    const url = form.url.value;
-    const used = form.used.value;
-    const PurchaseYear = form.PurchaseYear.value;
+    const title = form.items.value;
+    const author = form.author.value;
+    const details = form.details.value;
+    const Genre = form.genre.value;
+    const image = form.url.value;
+    const publication = form.publication.value;
+    const reviews = form.reviews.value;
     
-    console.log(items,price,textarea,genre,url,used,PurchaseYear)
+    
+
+    const options ={
+      
+      data:{ title,author,details,Genre,image,reviews,publication},
+    };
+    postBook(options);
+
+    setInputValue('');
+    toast({description:'book add successfully'})
   }
+
   return (
     <div className='mx-auto w-96'>
       <h2 className="text-3xl font-bold mb-5">Now add products</h2>
@@ -24,7 +44,7 @@ export default function AddNewBook() {
           type="text"
           name="items"
           placeholder="Your book title"
-          className="input w-full input-bordered"
+          className="input w-full border input-bordered"
         />
         <br />
         <br />
@@ -32,23 +52,23 @@ export default function AddNewBook() {
           type="text"
           name="url"
           placeholder="Your book image url"
-          className="input w-full input-bordered"
+          className="input w-full border  input-bordered"
         />
         <br />
         <br />
         <textarea
           
-          name="textarea"
+          name="details"
           placeholder="Your book description"
-          className="input w-full input-bordered"
+          className="input w-full input-bordered border"
         />
         <br />
         <br />
         <input
           type="text"
-          name="price"
+          name="author"
           placeholder="Your book author name"
-          className="input w-full input-bordered"
+          className="input w-full input-bordered border"
         />
         <br />
         <br />
@@ -56,9 +76,9 @@ export default function AddNewBook() {
 
         <input
           type="text"
-          name="PurchaseYear"
+          name="reviews"
           placeholder="Your book reviews"
-          className="input w-full input-bordered"
+          className="input w-full input-bordered border"
         />
         <br />
         <br />
@@ -66,20 +86,20 @@ export default function AddNewBook() {
           name="genre"
           type="text"
           placeholder="Your book Genre "
-          className="input w-full input-bordered"
+          className="input w-full input-bordered border"
         />
         <br />
         <br />
         <input
-          name="used"
+          name="publication"
           type="text"
           placeholder="publication year"
-          className="input w-full input-bordered"
+          className="input w-full input-bordered border"
         />
         <br />
         <br />
        
-        <input  className="btn btn-accent w-full max-w-xs hover:cursor-pointer" type="submit" />
+        <input  className="btn btn-accent w-full border max-w-xs hover:cursor-pointer" type="submit" />
       </form>
     </div>
   );

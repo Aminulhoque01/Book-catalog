@@ -1,14 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSingleBookQuery } from '../redux/books/bookApi';
-import React from 'react'
+import { useDeleteBookMutation, useSingleBookQuery, useUpdateBookMutation } from '../redux/books/bookApi';
+import React from 'react';
+import { Button } from '../components/ui/button';
+import { useAppDispatch } from '../redux/hook';
+import { IBook } from '../types/globalTypes';
+import { toast } from '../components/ui/use-toast';
 
 export default function BookDetails() {
-  const { id } = useParams();
- 
-  const {data:book,isLoading,error}=useSingleBookQuery(id);
+
+  const [inputValue, setInputValue] = useState<string>('');
+  // const {data} = useGetCommentQuery({refetchOnMountOrArgChange:true,pollingInterval:30000});
+  
 
   
+ 
+  const { id } = useParams();
+
+  const { data: book, isLoading, error } = useSingleBookQuery(id);
+
+  const dispatch = useAppDispatch();
+
+  const handleEditBook = (_book: IBook) => {
+    // dispatch(addToCart(product))
+    // toast({
+    //   description: 'Product Added',
+    // });
+  };
+
+ 
 
   return (
     <>
@@ -22,9 +42,19 @@ export default function BookDetails() {
           <p className="text-xl">Rating: {book?.reviews}</p>
           <p className="text-xl">Genre: {book?.Genre}</p>
           <h3 className="text-1xl font-semibold">Author: {book?.author}</h3>
-          <p className="text-sm">publication-date: {book?.publication }</p>
+          <p className="text-sm">publication-date: {book?.publication}</p>
+          <br />
+          <br />
+          <Button variant="default">
+            Edit book
+          </Button>
+
+          <Button variant="default" >
+            Delete book
+          </Button>
         </div>
       </div>
+
       
     </>
   );

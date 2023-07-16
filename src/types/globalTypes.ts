@@ -1,5 +1,5 @@
 export interface IBook {
-  _id: number;
+  _id: string;
   title: string;
   image: string;
   status: boolean;
