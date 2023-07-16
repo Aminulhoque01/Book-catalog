@@ -1,24 +1,15 @@
-import React from 'react';
+
+
 import { useGetBooksQuery } from '../redux/books/bookApi';
-import { useToast } from '../components/ui/use-toast';
-import { useAppDispatch } from '../redux/hook';
-import { toggleState } from '../redux/books/bookSlice';
-import { Switch } from '../components/ui/switch';
-import { Label } from '../components/ui/label';
-import { Slider } from '@radix-ui/react-slider';
+
+
 import { IBook } from '../types/globalTypes';
 import BookCard from '../components/BookCard';
 
 export default function AllBooks() {
   const { data, isLoading } = useGetBooksQuery(undefined);
-
-  const { toast } = useToast();
-
-  const dispatch = useAppDispatch();
-
-  const handleSlider = (value: number[]) => {
-    // dispatch(setPriceRange(value[0]));
-  };
+  console.log(isLoading)
+  
 
   let productsData;
 

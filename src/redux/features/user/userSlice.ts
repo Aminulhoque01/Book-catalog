@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice, isFulfilled } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../lib/firebase";
 

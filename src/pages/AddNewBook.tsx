@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+
 import { usePostBookMutation } from '../redux/books/bookApi';
 import { toast } from '../components/ui/use-toast';
 
 
 
 export default function AddNewBook() {
-  const [inputValue, setInputValue] = useState<string>('');
+  // const [ setInputValue] = useState<string>('');
   
   const [postBook, {isLoading,isError,isSuccess}] = usePostBookMutation();
   console.log(isLoading);
@@ -31,7 +31,7 @@ export default function AddNewBook() {
     };
     postBook(options);
 
-    setInputValue('');
+    
     toast({description:'book add successfully'})
   }
 

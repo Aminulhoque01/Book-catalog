@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { useAppSelector } from '../redux/hook';
 import { Navigate, useLocation } from 'react-router-dom';
 

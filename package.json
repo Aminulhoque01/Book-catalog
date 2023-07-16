@@ -56,7 +56,8 @@
     "redux-logger": "^3.0.6",
     "tailwind-merge": "^1.13.2",
     "tailwindcss-animate": "^1.0.6",
-    "tw-elements": "^1.0.0-beta2"
+    "tw-elements": "^1.0.0-beta2",
+    "wrangler": "^3.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.4.2",

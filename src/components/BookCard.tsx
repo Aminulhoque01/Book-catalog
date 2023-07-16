@@ -1,7 +1,7 @@
-import React from 'react'
+
 import { IBook } from '../types/globalTypes';
-import { useAppDispatch } from '../redux/hook';
-import { toast } from './ui/use-toast';
+
+
 import { Link } from 'react-router-dom';
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IProps {
   
 
 export default function BookCard({book}:IProps) {
-    const dispatch = useAppDispatch();
+    
 
 
     return (

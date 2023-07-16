@@ -1,33 +1,25 @@
-import { useEffect, useState } from 'react';
+
 import { useParams } from 'react-router-dom';
 import {
-  useDeleteBookMutation,
+  
   useSingleBookQuery,
-  useUpdateBookMutation,
+  
 } from '../redux/books/bookApi';
-import React from 'react';
+
 import { Button } from '../components/ui/button';
-import { useAppDispatch } from '../redux/hook';
-import { IBook } from '../types/globalTypes';
-import { toast } from '../components/ui/use-toast';
-import OpenModal from './OpenModal';
+
+
 
 export default function BookDetails() {
-  const [inputValue, setInputValue] = useState<string>('');
-  // const {data} = useGetCommentQuery({refetchOnMountOrArgChange:true,pollingInterval:30000});
+
 
   const { id } = useParams();
 
   const { data: book, isLoading, error } = useSingleBookQuery(id);
 
-  const dispatch = useAppDispatch();
-
-  const handleEditBook = (_book: IBook) => {
-    // dispatch(addToCart(product))
-    // toast({
-    //   description: 'Product Added',
-    // });
-  };
+  console.log(isLoading)
+  console.log(error)
+  
 
   return (
     <>
@@ -52,7 +44,7 @@ export default function BookDetails() {
           <Button variant="default">Delete book</Button>
         </div>
         
-        <OpenModal></OpenModal>
+       
       </div>
     </>
   );

@@ -8,7 +8,7 @@ import NoteFound from '../pages/NoteFound';
 // import BookDetails from '../pages/BookDetails';
 import AddNewBook from '../pages/AddNewBook';
 import BookDetails from '../pages/BookDetails';
-import PrivetRoute from './privetRoute';
+import PrivetRoute from './PrivetRoute';
  
 const routes = createBrowserRouter([
   {
