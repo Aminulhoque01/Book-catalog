@@ -5,12 +5,13 @@ import * as React from 'react';
 
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from '../redux/hook';
-import { createUser } from '../redux/features/user/userSlice';
+import { createUser, googleLogin } from '../redux/features/user/userSlice';
 import { cn } from '../lib/utils';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { FcGoogle } from 'react-icons/fc';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 
 
@@ -34,6 +35,11 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
     console.log(data);
     dispatch(createUser({ email: data.email, password: data.password }))
   };
+
+  const handelGoogle=()=>{
+    const provider = new GoogleAuthProvider()
+    dispatch(googleLogin(provider))
+  }
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
@@ -62,13 +68,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
               {...register('password', { required: 'Password is required' })}
             />
             {errors.password && <p>{errors.password.message}</p>}
-            <Input
-              id="password"
-              placeholder="confirm password"
-              type="password"
-              autoCapitalize="none"
-              autoCorrect="off"
-            />
+            
           </div>
           <Button>Create Account</Button>
         </div>
@@ -83,7 +83,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button
+      <Button onClick={handelGoogle}
         variant="outline"
         type="button"
         className="flex items-center justify-between"

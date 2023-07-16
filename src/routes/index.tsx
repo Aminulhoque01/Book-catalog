@@ -8,6 +8,7 @@ import NoteFound from '../pages/NoteFound';
 // import BookDetails from '../pages/BookDetails';
 import AddNewBook from '../pages/AddNewBook';
 import BookDetails from '../pages/BookDetails';
+import PrivetRoute from './privetRoute';
  
 const routes = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const routes = createBrowserRouter([
       },
      {
         path: '/all-book/:id',
-        element: <BookDetails />,
+        element: <PrivetRoute><BookDetails /></PrivetRoute>,
       },
       {
         path: '/AddNewBook/',

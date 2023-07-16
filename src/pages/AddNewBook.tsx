@@ -6,7 +6,7 @@ import { toast } from '../components/ui/use-toast';
 
 export default function AddNewBook() {
   const [inputValue, setInputValue] = useState<string>('');
-  // const {data} = useGetCommentQuery({refetchOnMountOrArgChange:true,pollingInterval:30000});
+  
   const [postBook, {isLoading,isError,isSuccess}] = usePostBookMutation();
   console.log(isLoading);
   console.log(isError);
